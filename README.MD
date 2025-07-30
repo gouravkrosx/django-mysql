@@ -9,7 +9,7 @@
 
 Run the db:
 ```bash
-docker run --name mySQL --network keploy-network -e MYSQL_ROOT_PASSWORD=keploy -e MYSQL_DATABASE=keploy_db -e MYSQL_USER=admin -e MYSQL_PASSWORD=keploy -p 3306:3306 -d mysql
+docker run --name mySQL --network keploy-network -e MYSQL_ROOT_PASSWORD=keploy -e MYSQL_DATABASE=keploy_db -e MYSQL_USER=admin -e MYSQL_PASSWORD=keploy -p 3306:3306 -d --rm mysql
 ```
 
 ### 2.	Build and Run Django Application Container
@@ -38,7 +38,7 @@ docker run --name django-app --net keploy-network -p 8000:8000 -v "$(pwd):$(pwd)
 
 Example CURL for creating an employee:
 ```bash
-curl -X POST http://localhost:8000/api/employee/create/ -H "Content-Type: application/json" -d '{"name": "John Doe", "years_of_experience": 5, "company": "TechCorp"}'
+curl -X POST http://localhost:8000/api/employee/create/ -H "Content-Type: application/json" -d '{"name": "John Doe", "years_of_experience": 5, "field_of_expertise": "IT", "company": "TechCorp"}'
 ```
 
 ### Notes:
@@ -50,7 +50,7 @@ Use the following curl commands to test the APIs after running the application:
 
 ### POST Request to create an employee
 ```bash
-curl -X POST http://localhost:8000/api/employee/create/ -H "Content-Type: application/json" -d '{"name": "John Doe", "years_of_experience": 5, "company": "TechCorp"}'
+curl -X POST http://localhost:8000/api/employee/create/ -H "Content-Type: application/json" -d '{"name": "John Doe", "years_of_experience": 5, "field_of_expertise": "IT",  "company": "TechCorp"}'
 ```
 
 ### GET Request to fetch all employees
@@ -66,7 +66,7 @@ curl -X GET http://localhost:8000/api/employee/1/
 
 ### PUT Request to update an employee
 ```bash
-curl -X PUT http://localhost:8000/api/employee/update/1/ -H "Content-Type: application/json" -d '{"name": "Jane Doe", "years_of_experience": 6, "company": "TechCorp"}'
+curl -X PUT http://localhost:8000/api/employee/update/1/ -H "Content-Type: application/json" -d '{"name": "Jane Doe", "years_of_experience": 6, "field_of_expertise": "IT",  "company": "TechCorp"}'
 ```
 
 ### DELETE Request to delete an employee
